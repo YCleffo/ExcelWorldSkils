@@ -1,4 +1,4 @@
-﻿<Page x:Class="ExcelWorldSkils.Model.Frame.autchPage"
+﻿<Page x:Class="ExcelWorldSkils.Model.Frame.AutchPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -9,15 +9,12 @@
       Title="Авторизация">
 
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        <StackPanel Orientation="Horizontal"/>
-        <DataGrid Grid.Row="1" x:Name="ListDataGrid">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="" Binding="{Binding}"/>
-            </DataGrid.Columns>
-        </DataGrid>
+        <StackPanel VerticalAlignment="Center" Width="200" HorizontalAlignment="Center">
+            <TextBlock Text="Логин" Margin="6" FontSize="16"/>
+            <TextBox x:Name="LogIn"/>
+            <TextBlock Text="Пароль" Margin="6" FontSize="16"/>
+            <TextBox x:Name="Password"/>
+            <Button x:Name="AutchBtn" Click="AutchBtnClick" Content="Войти" Margin="0 6"/>
+        </StackPanel>
     </Grid>
 </Page>
