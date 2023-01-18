@@ -15,14 +15,12 @@
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal">
             <TextBlock VerticalAlignment="Center" Text="Выберите группу"/>
-            <ComboBox Margin="20 0 20 0"></ComboBox>
-            <Button x:Name="ConclusionBtn" Content="Вывод отчета" Padding="8 4"/>
+            <ComboBox Margin="20 0 20 0" x:Name="ComboBoxSort" SelectionChanged="ComboBoxSortSelectionChanged" ></ComboBox>
+            <Button x:Name="ConclusionBtn" Click="ConclusionBtnClick" Content="Вывод отчета" Padding="8 4"/>
         </StackPanel>
         <DataGrid Grid.Row="1" x:Name="ListDataGrid" Margin="0 20" AutoGenerateColumns="False" ColumnWidth="*"  >
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Имя" Binding="{Binding LastName}"/>
-                <DataGridTextColumn Header="Фамилия" Binding="{Binding FiestName}"/>
-                <DataGridTextColumn Header="Отчество" Binding="{Binding PatronomicName}"/>
+                <DataGridTextColumn Header="ФИО" Binding="{Binding FIO}"/>
                 <DataGridTextColumn Header="Группа" Binding="{Binding Groups.NameGroup}"/>
                 <DataGridTextColumn Header="Специальность" Binding="{Binding Professions.NameProfession}"/>
                 <DataGridTextColumn Header="Форма обучения" Binding="{Binding FormTime.Name}"/>
