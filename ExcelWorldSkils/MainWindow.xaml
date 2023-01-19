@@ -13,7 +13,7 @@
         </Grid.RowDefinitions>
         <Image Source="Assets/Img/wsr-300.png" Height="80" HorizontalAlignment="Left"/>
         <TextBlock x:Name="titleTextBox" Text="{Binding ElementName=MainFrame, Path =Content.Title}" HorizontalAlignment="Center" FontSize="22" Padding="30 0" VerticalAlignment="Center"/>
-        <Button x:Name="backButton" Visibility="Hidden" Click="backButtonClick" HorizontalAlignment="Right" Content="Назад" VerticalAlignment="Center" Padding="10" FontSize="18" Margin="30 0"/>
+        <Button x:Name="backButton" Click="backButtonClick" HorizontalAlignment="Right" Content="Назад" VerticalAlignment="Center" Padding="10" FontSize="18" Margin="30 0"/>
         <Frame NavigationUIVisibility="Hidden" Grid.Row="1" x:Name="MainFrame"/>
     </Grid>
 </Window>

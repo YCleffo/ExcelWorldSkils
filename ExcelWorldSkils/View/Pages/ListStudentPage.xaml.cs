@@ -88,9 +88,22 @@ namespace ExcelWorldSkils.View.Pages
             application.Visible = true;
             Word.Paragraph titleParagraph = document.Paragraphs.Add();
             Word.Range titleRange = titleParagraph.Range;
-            titleRange.Text = "МИНИСТЕРСТВО ОБРАЗОВАНИЯ И МОЛОДЕЖИ ПОЛИТИКИ СВЕРДЛОВСКОЙ ОБЛАСТИ";
+            titleRange.Text = "ВЕДОМОСТЬ итоговой аттестации";
+            //Выравнивание
+            titleRange.ParagraphFormat.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
+            //жирность
+            titleRange.Font.Bold = 1;
             //ПЕРЕНОС СТРОКИ
             titleRange.InsertParagraphAfter();
+
+            //Таблица
+            Word.Paragraph tableParagraph = document.Paragraphs.Add();
+            Word.Range tableRange = tableParagraph.Range;
+            Word.Table titleTable = document.Tables.Add(tableRange,1,3);
+            Word.Range cellRange;
+            cellRange = titleTable.Cell(1, 1).Range;
+            cellRange.Text = "«____» ____________ 20__г. ";
+            application.Visible = true;
         }
     }
 }
