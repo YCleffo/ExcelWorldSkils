@@ -103,6 +103,8 @@ namespace ExcelWorldSkils.View.Pages
             Word.Range cellRange;
             cellRange = titleTable.Cell(1, 1).Range;
             cellRange.Text = "«____» ____________ 20__г. ";
+            cellRange = titleTable.Cell(1, 3).Range;
+            cellRange.Text = "№________________";
             application.Visible = true;
         }
     }
