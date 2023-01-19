@@ -16,7 +16,8 @@
         <StackPanel Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal">
             <TextBlock VerticalAlignment="Center" Text="Выберите группу"/>
             <ComboBox Margin="20 0 20 0" x:Name="ComboBoxSort" SelectionChanged="ComboBoxSortSelectionChanged" ></ComboBox>
-            <Button x:Name="ConclusionBtn" Click="ConclusionBtnClick" Content="Вывод отчета" Padding="8 4"/>
+            <Button x:Name="ConclusionBtn" Click="ConclusionBtnClick" Content="Вывод отчета Excel" Margin="0 0 10 0" Padding="8 4"/>
+            <Button x:Name="ConclBtnWord" Click="ConclBtnWordClick" Content="Вывод отчета Word" Padding="8 4"/>
         </StackPanel>
         <DataGrid Grid.Row="1" x:Name="ListDataGrid" Margin="0 20" AutoGenerateColumns="False" ColumnWidth="*"  >
             <DataGrid.Columns>

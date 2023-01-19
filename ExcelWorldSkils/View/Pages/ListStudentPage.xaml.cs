@@ -5,6 +5,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using Excel = Microsoft.Office.Interop.Excel;
+using Word = Microsoft.Office.Interop.Word;
 
 namespace ExcelWorldSkils.View.Pages
 {
@@ -78,6 +79,18 @@ namespace ExcelWorldSkils.View.Pages
             rangeBorders.Borders[Excel.XlBordersIndex.xlEdgeBottom].LineStyle = rangeBorders.Borders[Excel.XlBordersIndex.xlEdgeLeft].LineStyle = rangeBorders.Borders[Excel.XlBordersIndex.xlEdgeRight].LineStyle = rangeBorders.Borders[Excel.XlBordersIndex.xlEdgeTop].LineStyle =
                  rangeBorders.Borders[Excel.XlBordersIndex.xlInsideHorizontal].LineStyle = rangeBorders.Borders[Excel.XlBordersIndex.xlInsideVertical].LineStyle = Excel.XlLineStyle.xlContinuous;
             worksheet.Columns.AutoFit();
+        }
+
+        private void ConclBtnWordClick(object sender, RoutedEventArgs e)
+        {
+            Word.Application application = new Word.Application();
+            Word.Document document = application.Documents.Add();
+            application.Visible = true;
+            Word.Paragraph titleParagraph = document.Paragraphs.Add();
+            Word.Range titleRange = titleParagraph.Range;
+            titleRange.Text = "МИНИСТЕРСТВО ОБРАЗОВАНИЯ И МОЛОДЕЖИ ПОЛИТИКИ СВЕРДЛОВСКОЙ ОБЛАСТИ";
+            //ПЕРЕНОС СТРОКИ
+            titleRange.InsertParagraphAfter();
         }
     }
 }

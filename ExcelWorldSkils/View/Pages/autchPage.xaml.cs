@@ -58,11 +58,11 @@ namespace ExcelWorldSkils.Model.Frame
                     {
 
                         case 1:
-                            this.NavigationService.Navigate(new ListStudentPage());
+                            this.NavigationService.Navigate(new HomeNavigatePage());
 
                             break;
                         case 2:
-                            this.NavigationService.Navigate(new ListStudentPage());
+                            this.NavigationService.Navigate(new HomeNavigatePage());
 
                             break;
 
