@@ -7,23 +7,26 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ExcelWorldSkils.View.Model
+namespace ExcelWorldSkils.Model
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class YearAdd
+    public partial class Subjects
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public YearAdd()
+        public Subjects()
         {
-            this.Students = new HashSet<Students>();
+            this.Journals = new HashSet<Journals>();
+            this.TeacherHasSubjects = new HashSet<TeacherHasSubjects>();
         }
     
-        public int idYear { get; set; }
-        public Nullable<int> Year { get; set; }
+        public int IdSubject { get; set; }
+        public string NameSubject { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Students> Students { get; set; }
+        public virtual ICollection<Journals> Journals { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TeacherHasSubjects> TeacherHasSubjects { get; set; }
     }
 }

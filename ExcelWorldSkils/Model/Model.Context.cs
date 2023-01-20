@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ExcelWorldSkils.View.Model
+namespace ExcelWorldSkils.Model
 {
     using System;
     using System.Data.Entity;

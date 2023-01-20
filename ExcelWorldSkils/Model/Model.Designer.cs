@@ -1,4 +1,4 @@
-﻿// Создание кода T4 для модели "C:\Users\311-9(student)\source\repos\ExcelWorldSkils\ExcelWorldSkils\View\Model\Model.edmx" включено. 
+﻿// Создание кода T4 для модели "C:\Users\311-9(student)\source\repos\Vosmerka\YCleffo\ExcelWorldSkils\ExcelWorldSkils\Model\Model.edmx" включено. 
 // Чтобы включить формирование кода прежних версий, измените значение свойства "Стратегия создания кода" конструктора
 // на "Legacy ObjectContext". Это свойство доступно в окне "Свойства", если модель
 // открыта в конструкторе.

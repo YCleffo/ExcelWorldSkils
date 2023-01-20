@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ExcelWorldSkils.View.Model
+namespace ExcelWorldSkils.Model
 {
     public partial class Students
     {

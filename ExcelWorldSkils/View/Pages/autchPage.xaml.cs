@@ -39,7 +39,7 @@ namespace ExcelWorldSkils.Model.Frame
 
                 //считаем количество записей в таблице с заданными параметрами (логин, пароль)
                 Users autch = db.context.Users.Where(
-                x => x.Login == LogIn.Text && x.Password == Password.Text
+                x => x.Login == LogInTextBox.Text && x.Password == PasswordTextBox.Text
                 ).FirstOrDefault();
 
                 if (autch == null)
@@ -77,6 +77,42 @@ namespace ExcelWorldSkils.Model.Frame
                 "Уведомление",
                 MessageBoxButton.OK,
                 MessageBoxImage.Warning);
+            }
+        }
+
+        private void RegBtn_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(LogInTextBox.Text))
+                {
+                    MessageBox.Show("Вы не заполнили поля!",
+                    "Уведомление",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Information);
+                }
+                else
+                {
+                    Users newUser = new Users()
+                    {
+                        Login = LogInTextBox.Text,
+                        Password = PasswordTextBox.Text,
+                    };
+
+                    db.context.Users.Add(newUser);
+                    db.context.SaveChanges();
+
+                    MessageBox.Show("Добавление выполнено успешно !",
+                    "Уведомление",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Information);
+                    this.NavigationService.Navigate(new HomeNavigatePage());
+                }
+                
+            }
+            catch
+            {
+                MessageBox.Show("Критический сбор в работе приложения:", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
     }

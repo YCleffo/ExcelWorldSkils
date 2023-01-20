@@ -26,7 +26,7 @@ namespace ExcelWorldSkils
         public MainWindow()
         {
             InitializeComponent();
-            MainFrame.Navigate(new ListStudentPage());
+            MainFrame.Navigate(new AutchPage());
         }
 
         private void backButtonClick(object sender, RoutedEventArgs e)

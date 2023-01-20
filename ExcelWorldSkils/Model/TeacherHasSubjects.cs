@@ -7,23 +7,19 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ExcelWorldSkils.View.Model
+namespace ExcelWorldSkils.Model
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Role
+    public partial class TeacherHasSubjects
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Role()
-        {
-            this.Users = new HashSet<Users>();
-        }
+        public int idTD { get; set; }
+        public Nullable<int> IdTeacher { get; set; }
+        public Nullable<int> IdSubject { get; set; }
+        public Nullable<int> Duration { get; set; }
     
-        public int IdRole { get; set; }
-        public string NameRole { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Users> Users { get; set; }
+        public virtual Subjects Subjects { get; set; }
+        public virtual Teachers Teachers { get; set; }
     }
 }

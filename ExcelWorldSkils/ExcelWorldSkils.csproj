@@ -65,62 +65,63 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="View\Model\Core.cs" />
-    <Compile Include="View\Model\FormTime.cs">
+    <Compile Include="Model\Core.cs" />
+    <Compile Include="Model\FormTime.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="View\Model\Groups.cs">
+    <Compile Include="Model\Groups.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="View\Model\History.cs">
+    <Compile Include="Model\History.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="View\Model\Journals.cs">
+    <Compile Include="Model\Journals.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="View\Model\Model.Context.cs">
+    <Compile Include="Model\Model.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Model.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="View\Model\Model.cs">
+    <Compile Include="Model\Model.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="View\Model\Model.Designer.cs">
+    <Compile Include="Model\Model.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Model.edmx</DependentUpon>
     </Compile>
-    <Compile Include="View\Model\ParticialClasses\StudentsPartitial.cs" />
-    <Compile Include="View\Model\Professions.cs">
+    <Compile Include="Model\ParticialClasses\StudentsPartitial.cs" />
+    <Compile Include="Model\Professions.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="View\Model\Role.cs">
+    <Compile Include="Model\Role.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="View\Model\Status.cs">
+    <Compile Include="Model\Status.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="View\Model\Students.cs">
+    <Compile Include="Model\Students.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="View\Model\Subjects.cs">
+    <Compile Include="Model\Subjects.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="View\Model\TeacherHasSubjects.cs">
+    <Compile Include="Model\TeacherHasSubjects.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="View\Model\Teachers.cs">
+    <Compile Include="Model\Teachers.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="View\Model\Users.cs">
+    <Compile Include="Model\Users.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="View\Model\YearAdd.cs">
+    <Compile Include="Model\YearAdd.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\UsersViewModel.cs" />
     <Compile Include="View\Pages\HomeNavigatePage.xaml.cs">
       <DependentUpon>HomeNavigatePage.xaml</DependentUpon>
     </Compile>
@@ -178,11 +179,11 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <EntityDeploy Include="View\Model\Model.edmx">
+    <EntityDeploy Include="Model\Model.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="View\Model\Model.edmx.diagram">
+    <None Include="Model\Model.edmx.diagram">
       <DependentUpon>Model.edmx</DependentUpon>
     </None>
   </ItemGroup>
@@ -193,12 +194,12 @@
     <Resource Include="Assets\Img\wsr-300.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="View\Model\Model.Context.tt">
+    <Content Include="Model\Model.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Model.Context.cs</LastGenOutput>
       <DependentUpon>Model.edmx</DependentUpon>
     </Content>
-    <Content Include="View\Model\Model.tt">
+    <Content Include="Model\Model.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model.edmx</DependentUpon>
       <LastGenOutput>Model.cs</LastGenOutput>

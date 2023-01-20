@@ -7,26 +7,23 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ExcelWorldSkils.View.Model
+namespace ExcelWorldSkils.Model
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Groups
+    public partial class Role
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Groups()
+        public Role()
         {
-            this.Journals = new HashSet<Journals>();
-            this.Students = new HashSet<Students>();
+            this.Users = new HashSet<Users>();
         }
     
-        public int IdGroup { get; set; }
-        public string NameGroup { get; set; }
+        public int IdRole { get; set; }
+        public string NameRole { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Journals> Journals { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Students> Students { get; set; }
+        public virtual ICollection<Users> Users { get; set; }
     }
 }
