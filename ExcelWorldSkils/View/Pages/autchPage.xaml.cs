@@ -1,5 +1,6 @@
 ﻿using ExcelWorldSkils.View.Model;
 using ExcelWorldSkils.View.Pages;
+using ExcelWorldSkils.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -93,20 +94,22 @@ namespace ExcelWorldSkils.Model.Frame
                 }
                 else
                 {
-                    Users newUser = new Users()
+                    if (UsersViewModel.AddUser(LogInTextBox.Text, PasswordTextBox.Text)==false)
                     {
-                        Login = LogInTextBox.Text,
-                        Password = PasswordTextBox.Text,
-                    };
 
-                    db.context.Users.Add(newUser);
-                    db.context.SaveChanges();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Добавление выполнено успешно !",
+                  "Уведомление",
+                  MessageBoxButton.OK,
+                  MessageBoxImage.Information);
+                        this.NavigationService.Navigate(new HomeNavigatePage());
+                    }
+                  
+                    
 
-                    MessageBox.Show("Добавление выполнено успешно !",
-                    "Уведомление",
-                    MessageBoxButton.OK,
-                    MessageBoxImage.Information);
-                    this.NavigationService.Navigate(new HomeNavigatePage());
+                  
                 }
                 
             }

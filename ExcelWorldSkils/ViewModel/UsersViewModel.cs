@@ -7,7 +7,12 @@ namespace ExcelWorldSkils.ViewModel
 {
     public class UsersViewModel
     {
-        Core db = new Core();
+       static Core db = new Core();
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="login"></param>
+        /// <returns></returns>
         public bool LoginCheck(string login)
         {
             string correctSymbols = "abcdefghijklmnoprstuvwyz0123456789-_.";
@@ -26,16 +31,29 @@ namespace ExcelWorldSkils.ViewModel
             }
             return true;
         }
-        public void AddUser(string login)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="login"></param>
+        /// <param name="pass"></param>
+        /// <returns></returns>
+        public static bool AddUser(string login,string pass)
         {
             Users newUser = new Users()
             {
-                //Login = LogInTextBox.Text,
-                //Password = PasswordTextBox.Text,
+                Login = login,
+                Password = pass,
             };
 
             db.context.Users.Add(newUser);
-            db.context.SaveChanges();
+            if (db.context.SaveChanges()>0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }
