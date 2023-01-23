@@ -27,7 +27,7 @@ namespace ExcelWorldSkils.View.Pages
 
         private void AddStudent_Click(object sender, RoutedEventArgs e)
         {
-
+            this.NavigationService.Navigate(new AddUsersPage());
         }
 
         private void AddGrade_Click(object sender, RoutedEventArgs e)

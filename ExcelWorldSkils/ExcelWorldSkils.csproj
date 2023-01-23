@@ -122,6 +122,9 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\UsersViewModel.cs" />
+    <Compile Include="View\Pages\AddUsersPage.xaml.cs">
+      <DependentUpon>AddUsersPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Pages\HomeNavigatePage.xaml.cs">
       <DependentUpon>HomeNavigatePage.xaml</DependentUpon>
     </Compile>
@@ -140,6 +143,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\Pages\AddUsersPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Pages\AutchPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -10,14 +10,18 @@
 
     <Grid>
         <StackPanel VerticalAlignment="Center" Width="300" HorizontalAlignment="Center">
-            <TextBlock Text="Логин"  Margin="6" FontSize="16"/>
-            <TextBox x:Name="LogInTextBox"/>
-            <TextBlock Text="Пароль" Margin="6" FontSize="16"/>
-            <TextBox x:Name="PasswordTextBox"/>
-            <StackPanel Orientation="Horizontal" Margin="0 15">
-                <Button x:Name="AutchBtn" Click="AutchBtnClick" Content="Войти" Margin="0 0 20 0" Width="140"/>
+            <UniformGrid Columns="2">
+                 <TextBlock Text="Логин"  Margin="6" FontSize="16"/>
+                <TextBox x:Name="LogInTextBox" Height="20"/>
+            </UniformGrid>
+            <UniformGrid Columns="2">
+                <TextBlock Text="Пароль" Margin="6" FontSize="16"/>
+                <TextBox x:Name="PasswordTextBox" Height="20"/>
+            </UniformGrid>
+            <UniformGrid Columns="2">
+                <Button x:Name="AutchBtn" Click="AutchBtnClick" Content="Войти" Width="140"/>
                 <Button x:Name="RegBtn" Click="RegBtn_Click" Content="Зарегестрироваться" Width="140"/>
-            </StackPanel>
+            </UniformGrid>
         </StackPanel>
     </Grid>
 </Page>
