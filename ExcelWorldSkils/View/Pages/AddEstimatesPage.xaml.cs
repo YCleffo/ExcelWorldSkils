@@ -44,9 +44,7 @@ namespace ExcelWorldSkils.View.Pages
         {
             int idGroup = Convert.ToInt32(GroupComboBox.SelectedValue);
             arrayStudents = db.context.Students.Where(x => x.IdGroup == idGroup).ToList();
-          
-                StudentComboBox.IsEnabled = true;
-
+            StudentComboBox.IsEnabled = true;
             StudentComboBox.ItemsSource = arrayStudents;
 
         }
@@ -60,12 +58,47 @@ namespace ExcelWorldSkils.View.Pages
         private void StudentComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             int IdStudent = Convert.ToInt32(StudentComboBox.SelectedValue);
-          
         }
 
         private void AddEstimates_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                if (string.IsNullOrEmpty(EstimatesTexBox.Text))
+                {
+                    MessageBox.Show("Вы не заполнили поля!",
+                    "Уведомление",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Information);
+                }
+                else
+                {
+                    int idGroup = Convert.ToInt32(GroupComboBox.SelectedValue);
+                    int student = Convert.ToInt32(StudentComboBox.SelectedValue);
+                    int professionComboBox = Convert.ToInt32(ProfessionComboBox.SelectedValue);
+                    Journals newEstimates = new Journals()
+                    {
+                        IdGroup = idGroup,
+                        IdStudent = student,
+                        IdSubject = professionComboBox,
+                        Evaluation = Convert.ToInt32(EstimatesTexBox.Text)
+                    };
 
+                    db.context.Journals.Add(newEstimates);
+                    db.context.SaveChanges();
+
+                    MessageBox.Show("Добавление выполнено успешно !",
+                    "Уведомление",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Information);
+                    this.NavigationService.Navigate(new HomeNavigatePage());
+                }
+
+            }
+            catch
+            {
+                MessageBox.Show("Критический сбор в работе приложения:", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
     }
 }

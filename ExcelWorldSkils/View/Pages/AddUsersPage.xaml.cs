@@ -57,9 +57,9 @@ namespace ExcelWorldSkils.View.Pages
                 else
                 {
                     int idGroup = Convert.ToInt32(GroupComboBox.SelectedValue);
-                    int formTimeComboBox = Convert.ToInt32(GroupComboBox.SelectedValue);
-                    int yearAddComboBox = Convert.ToInt32(GroupComboBox.SelectedValue);
-                    int professionComboBox = Convert.ToInt32(GroupComboBox.SelectedValue);
+                    int formTimeComboBox = Convert.ToInt32(FormTimeComboBox.SelectedValue);
+                    int yearAddComboBox = Convert.ToInt32(YearAddComboBox.SelectedValue);
+                    int professionComboBox = Convert.ToInt32(ProfessionComboBox.SelectedValue);
                     Students newStudent = new Students()
                     {
                         LastName = LastNameTextBox.Text,

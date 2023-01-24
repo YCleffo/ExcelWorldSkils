@@ -24,7 +24,7 @@
             </UniformGrid>
             <UniformGrid Columns="2" Margin="0 6">
                 <TextBlock Text="Введите оценку" VerticalAlignment="Center"/>
-                <TextBox VerticalAlignment="Center" Width="160"/>
+                <TextBox x:Name="EstimatesTexBox" VerticalAlignment="Center" Width="160"/>
             </UniformGrid>
             <Button x:Name="AddEstimates" Click="AddEstimates_Click" Content="Добавить оценку" Padding="0 4" Margin="80 10" FontSize="12"/>
         </StackPanel>
