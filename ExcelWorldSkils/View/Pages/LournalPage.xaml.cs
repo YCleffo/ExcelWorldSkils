@@ -31,7 +31,7 @@ namespace ExcelWorldSkils.View.Pages
             InitializeComponent();
             arrayList = db.context.Journals.Where(x=>x.IdStudent== activeStudent.IdStudent).ToList();
             ListDataGrid.ItemsSource = arrayList;
-            //this.DataContext = activeStudent;
+            this.DataContext = activeStudent;
         }
 
         private void ConclBtnWordClick(object sender, RoutedEventArgs e)
