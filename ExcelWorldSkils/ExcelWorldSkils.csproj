@@ -126,6 +126,9 @@
     </Compile>
     <Compile Include="ViewModel\StudentViewModel.cs" />
     <Compile Include="ViewModel\UsersViewModel.cs" />
+    <Compile Include="View\Pages\AddEstimatesPage.xaml.cs">
+      <DependentUpon>AddEstimatesPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Pages\AddUsersPage.xaml.cs">
       <DependentUpon>AddUsersPage.xaml</DependentUpon>
     </Compile>
@@ -150,6 +153,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\Pages\AddEstimatesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Pages\AddUsersPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

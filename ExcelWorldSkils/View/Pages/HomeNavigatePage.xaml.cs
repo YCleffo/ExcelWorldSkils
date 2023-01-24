@@ -32,7 +32,7 @@ namespace ExcelWorldSkils.View.Pages
 
         private void AddGrade_Click(object sender, RoutedEventArgs e)
         {
-
+            this.NavigationService.Navigate(new AddEstimatesPage());
         }
 
         private void ListStudent_Click(object sender, RoutedEventArgs e)

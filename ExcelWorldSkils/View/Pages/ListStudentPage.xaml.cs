@@ -85,29 +85,6 @@ namespace ExcelWorldSkils.View.Pages
 
         private void ConclBtnWordClick(object sender, RoutedEventArgs e)
         {
-            //Word.Application application = new Word.Application();
-            //Word.Document document = application.Documents.Add();
-            //application.Visible = true;
-            //Word.Paragraph titleParagraph = document.Paragraphs.Add();
-            //Word.Range titleRange = titleParagraph.Range;
-            //titleRange.Text = "ВЕДОМОСТЬ итоговой аттестации";
-            ////Выравнивание
-            //titleRange.ParagraphFormat.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
-            ////жирность
-            //titleRange.Font.Bold = 1;
-            ////ПЕРЕНОС СТРОКИ
-            //titleRange.InsertParagraphAfter();
-            ////Таблица
-            //Word.Paragraph tableParagraph = document.Paragraphs.Add();
-            //Word.Range tableRange = tableParagraph.Range;
-            //Word.Table titleTable = document.Tables.Add(tableRange,1,3);
-            //Word.Range cellRange;
-            //cellRange = titleTable.Cell(1, 1).Range;
-            //cellRange.Text = "«____» ____________ 20__г. ";
-            //cellRange = titleTable.Cell(1, 3).Range;
-            //cellRange.Text = "№________________";
-            //application.Visible = true;
-
             int i = Convert.ToInt32(ComboBoxSort.SelectedValue);
             if (i != 0) arrayStudents = db.context.Students.Where(x => x.IdGroup == i).ToList();
             Word.Application application = new Word.Application();
