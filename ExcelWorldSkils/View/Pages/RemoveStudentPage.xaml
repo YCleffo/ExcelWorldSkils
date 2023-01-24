@@ -9,13 +9,18 @@
       Title="Удаление студента">
 
     <Grid>
-        <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="0.6*"/>
+        </Grid.RowDefinitions>
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Left">
             <UniformGrid Columns="2">
             <TextBlock Text="Выберите гнруппу"/>
-            <ComboBox x:Name="SelectStudentComboBox" Width="200" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" SelectionChanged="SelectStudentComboBox_SelectionChanged"/>
+            <ComboBox x:Name="SelectStudentComboBox" Width="200" HorizontalAlignment="Left" Height="20" VerticalAlignment="Center" SelectionChanged="SelectStudentComboBox_SelectionChanged"/>
             </UniformGrid>
         </StackPanel>
-        <DataGrid Grid.Row="1" x:Name="ListDataGrid" Margin="0 20" AutoGenerateColumns="False" ColumnWidth="*"  >
+        <DataGrid Grid.Row="1" x:Name="ListDataGrid" AutoGenerateColumns="False" ColumnWidth="*">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Студент" Binding="{Binding FIO}"/>
                 <DataGridTextColumn Header="Группа" Binding="{Binding Groups.NameGroup}"/>
@@ -24,5 +29,6 @@
                 <DataGridTextColumn Header="Год поступления" Binding="{Binding YearAdd.Year}"/>
             </DataGrid.Columns>
         </DataGrid>
+        <Button Grid.Row="2" x:Name="RemoveStudent" Click="RemoveStudent_Click" Padding="14 6" FontSize="15" Content="Удалить студента"  HorizontalAlignment="Center" VerticalAlignment="Center"/>
     </Grid>
 </Page>

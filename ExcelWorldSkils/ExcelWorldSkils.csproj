@@ -109,6 +109,9 @@
     <Compile Include="Model\Subjects.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\sysdiagrams.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\TeacherHasSubjects.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -121,6 +124,7 @@
     <Compile Include="Model\YearAdd.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\StudentViewModel.cs" />
     <Compile Include="ViewModel\UsersViewModel.cs" />
     <Compile Include="View\Pages\AddUsersPage.xaml.cs">
       <DependentUpon>AddUsersPage.xaml</DependentUpon>
@@ -261,8 +265,6 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="docs\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

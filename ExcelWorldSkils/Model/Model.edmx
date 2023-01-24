@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище excelModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Хранилище excelModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="FormTime">
           <Key>
             <PropertyRef Name="Id" />
@@ -79,6 +79,16 @@
           </Key>
           <Property Name="IdSubject" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="NameSubject" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="TeacherHasSubjects">
           <Key>
@@ -167,7 +177,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Journal_Students">
-          <End Role="Students" Type="Self.Students" Multiplicity="1" />
+          <End Role="Students" Type="Self.Students" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Journals" Type="Self.Journals" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Students">
@@ -300,6 +312,7 @@
           <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Students" EntityType="Self.Students" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Subjects" EntityType="Self.Subjects" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TeacherHasSubjects" EntityType="Self.TeacherHasSubjects" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Teachers" EntityType="Self.Teachers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
@@ -357,18 +370,85 @@
             <End Role="Users" EntitySet="Users" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="excelModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="excelEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="FormTime" EntityType="excelModel.FormTime" />
+          <EntitySet Name="Groups" EntityType="excelModel.Groups" />
+          <EntitySet Name="History" EntityType="excelModel.History" />
+          <EntitySet Name="Journals" EntityType="excelModel.Journals" />
+          <EntitySet Name="Professions" EntityType="excelModel.Professions" />
+          <EntitySet Name="Role" EntityType="excelModel.Role" />
+          <EntitySet Name="Status" EntityType="excelModel.Status" />
+          <EntitySet Name="Students" EntityType="excelModel.Students" />
+          <EntitySet Name="Subjects" EntityType="excelModel.Subjects" />
+          <EntitySet Name="sysdiagrams" EntityType="excelModel.sysdiagrams" />
+          <EntitySet Name="TeacherHasSubjects" EntityType="excelModel.TeacherHasSubjects" />
+          <EntitySet Name="Teachers" EntityType="excelModel.Teachers" />
+          <EntitySet Name="Users" EntityType="excelModel.Users" />
+          <EntitySet Name="YearAdd" EntityType="excelModel.YearAdd" />
+          <AssociationSet Name="FK_Students_FormTime" Association="excelModel.FK_Students_FormTime">
+            <End Role="FormTime" EntitySet="FormTime" />
+            <End Role="Students" EntitySet="Students" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Journal_Groups" Association="excelModel.FK_Journal_Groups">
+            <End Role="Groups" EntitySet="Groups" />
+            <End Role="Journals" EntitySet="Journals" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Students_Groups" Association="excelModel.FK_Students_Groups">
+            <End Role="Groups" EntitySet="Groups" />
+            <End Role="Students" EntitySet="Students" />
+          </AssociationSet>
+          <AssociationSet Name="FK_History_Status" Association="excelModel.FK_History_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="History" EntitySet="History" />
+          </AssociationSet>
+          <AssociationSet Name="FK_History_Students" Association="excelModel.FK_History_Students">
+            <End Role="Students" EntitySet="Students" />
+            <End Role="History" EntitySet="History" />
+          </AssociationSet>
+          <AssociationSet Name="FK_History_Teachers" Association="excelModel.FK_History_Teachers">
+            <End Role="Teachers" EntitySet="Teachers" />
+            <End Role="History" EntitySet="History" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Journal_Students" Association="excelModel.FK_Journal_Students">
+            <End Role="Students" EntitySet="Students" />
+            <End Role="Journals" EntitySet="Journals" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Journal_Subjects" Association="excelModel.FK_Journal_Subjects">
+            <End Role="Subjects" EntitySet="Subjects" />
+            <End Role="Journals" EntitySet="Journals" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Students_Professions" Association="excelModel.FK_Students_Professions">
+            <End Role="Professions" EntitySet="Professions" />
+            <End Role="Students" EntitySet="Students" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_Role" Association="excelModel.FK_Users_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Students_YearAdd" Association="excelModel.FK_Students_YearAdd">
+            <End Role="YearAdd" EntitySet="YearAdd" />
+            <End Role="Students" EntitySet="Students" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TeacherHasSubjects_Subjects" Association="excelModel.FK_TeacherHasSubjects_Subjects">
+            <End Role="Subjects" EntitySet="Subjects" />
+            <End Role="TeacherHasSubjects" EntitySet="TeacherHasSubjects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TeacherHasSubjects_Teachers" Association="excelModel.FK_TeacherHasSubjects_Teachers">
+            <End Role="Teachers" EntitySet="Teachers" />
+            <End Role="TeacherHasSubjects" EntitySet="TeacherHasSubjects" />
+          </AssociationSet>
+        </EntityContainer>
         <EntityType Name="FormTime">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Students" Relationship="Self.FK_Students_FormTime" FromRole="FormTime" ToRole="Students" />
+          <NavigationProperty Name="Students" Relationship="excelModel.FK_Students_FormTime" FromRole="FormTime" ToRole="Students" />
         </EntityType>
         <EntityType Name="Groups">
           <Key>
@@ -376,8 +456,8 @@
           </Key>
           <Property Name="IdGroup" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NameGroup" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Journals" Relationship="Self.FK_Journal_Groups" FromRole="Groups" ToRole="Journals" />
-          <NavigationProperty Name="Students" Relationship="Self.FK_Students_Groups" FromRole="Groups" ToRole="Students" />
+          <NavigationProperty Name="Journals" Relationship="excelModel.FK_Journal_Groups" FromRole="Groups" ToRole="Journals" />
+          <NavigationProperty Name="Students" Relationship="excelModel.FK_Students_Groups" FromRole="Groups" ToRole="Students" />
         </EntityType>
         <EntityType Name="History">
           <Key>
@@ -388,9 +468,9 @@
           <Property Name="IdStudent" Type="Int32" />
           <Property Name="IdStatus" Type="Int32" />
           <Property Name="DateEvent" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="Status" Relationship="Self.FK_History_Status" FromRole="History" ToRole="Status" />
-          <NavigationProperty Name="Students" Relationship="Self.FK_History_Students" FromRole="History" ToRole="Students" />
-          <NavigationProperty Name="Teachers" Relationship="Self.FK_History_Teachers" FromRole="History" ToRole="Teachers" />
+          <NavigationProperty Name="Status" Relationship="excelModel.FK_History_Status" FromRole="History" ToRole="Status" />
+          <NavigationProperty Name="Students" Relationship="excelModel.FK_History_Students" FromRole="History" ToRole="Students" />
+          <NavigationProperty Name="Teachers" Relationship="excelModel.FK_History_Teachers" FromRole="History" ToRole="Teachers" />
         </EntityType>
         <EntityType Name="Journals">
           <Key>
@@ -401,9 +481,9 @@
           <Property Name="IdSubject" Type="Int32" />
           <Property Name="Evaluation" Type="Int32" />
           <Property Name="IdGroup" Type="Int32" />
-          <NavigationProperty Name="Groups" Relationship="Self.FK_Journal_Groups" FromRole="Journals" ToRole="Groups" />
-          <NavigationProperty Name="Students" Relationship="Self.FK_Journal_Students" FromRole="Journals" ToRole="Students" />
-          <NavigationProperty Name="Subjects" Relationship="Self.FK_Journal_Subjects" FromRole="Journals" ToRole="Subjects" />
+          <NavigationProperty Name="Groups" Relationship="excelModel.FK_Journal_Groups" FromRole="Journals" ToRole="Groups" />
+          <NavigationProperty Name="Students" Relationship="excelModel.FK_Journal_Students" FromRole="Journals" ToRole="Students" />
+          <NavigationProperty Name="Subjects" Relationship="excelModel.FK_Journal_Subjects" FromRole="Journals" ToRole="Subjects" />
         </EntityType>
         <EntityType Name="Professions">
           <Key>
@@ -411,7 +491,7 @@
           </Key>
           <Property Name="IdProfession" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NameProfession" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Students" Relationship="Self.FK_Students_Professions" FromRole="Professions" ToRole="Students" />
+          <NavigationProperty Name="Students" Relationship="excelModel.FK_Students_Professions" FromRole="Professions" ToRole="Students" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -419,7 +499,7 @@
           </Key>
           <Property Name="IdRole" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NameRole" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Users" Relationship="Self.FK_Users_Role" FromRole="Role" ToRole="Users" />
+          <NavigationProperty Name="Users" Relationship="excelModel.FK_Users_Role" FromRole="Role" ToRole="Users" />
         </EntityType>
         <EntityType Name="Status">
           <Key>
@@ -427,7 +507,7 @@
           </Key>
           <Property Name="IdStatus" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NameStatus" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="History" Relationship="Self.FK_History_Status" FromRole="Status" ToRole="History" />
+          <NavigationProperty Name="History" Relationship="excelModel.FK_History_Status" FromRole="Status" ToRole="History" />
         </EntityType>
         <EntityType Name="Students">
           <Key>
@@ -441,12 +521,12 @@
           <Property Name="IdFormTime" Type="Int32" />
           <Property Name="IdGroup" Type="Int32" />
           <Property Name="IdYearAdd" Type="Int32" />
-          <NavigationProperty Name="FormTime" Relationship="Self.FK_Students_FormTime" FromRole="Students" ToRole="FormTime" />
-          <NavigationProperty Name="Groups" Relationship="Self.FK_Students_Groups" FromRole="Students" ToRole="Groups" />
-          <NavigationProperty Name="History" Relationship="Self.FK_History_Students" FromRole="Students" ToRole="History" />
-          <NavigationProperty Name="Journals" Relationship="Self.FK_Journal_Students" FromRole="Students" ToRole="Journals" />
-          <NavigationProperty Name="Professions" Relationship="Self.FK_Students_Professions" FromRole="Students" ToRole="Professions" />
-          <NavigationProperty Name="YearAdd" Relationship="Self.FK_Students_YearAdd" FromRole="Students" ToRole="YearAdd" />
+          <NavigationProperty Name="FormTime" Relationship="excelModel.FK_Students_FormTime" FromRole="Students" ToRole="FormTime" />
+          <NavigationProperty Name="Groups" Relationship="excelModel.FK_Students_Groups" FromRole="Students" ToRole="Groups" />
+          <NavigationProperty Name="History" Relationship="excelModel.FK_History_Students" FromRole="Students" ToRole="History" />
+          <NavigationProperty Name="Journals" Relationship="excelModel.FK_Journal_Students" FromRole="Students" ToRole="Journals" />
+          <NavigationProperty Name="Professions" Relationship="excelModel.FK_Students_Professions" FromRole="Students" ToRole="Professions" />
+          <NavigationProperty Name="YearAdd" Relationship="excelModel.FK_Students_YearAdd" FromRole="Students" ToRole="YearAdd" />
         </EntityType>
         <EntityType Name="Subjects">
           <Key>
@@ -454,8 +534,18 @@
           </Key>
           <Property Name="IdSubject" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NameSubject" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Journals" Relationship="Self.FK_Journal_Subjects" FromRole="Subjects" ToRole="Journals" />
-          <NavigationProperty Name="TeacherHasSubjects" Relationship="Self.FK_TeacherHasSubjects_Subjects" FromRole="Subjects" ToRole="TeacherHasSubjects" />
+          <NavigationProperty Name="Journals" Relationship="excelModel.FK_Journal_Subjects" FromRole="Subjects" ToRole="Journals" />
+          <NavigationProperty Name="TeacherHasSubjects" Relationship="excelModel.FK_TeacherHasSubjects_Subjects" FromRole="Subjects" ToRole="TeacherHasSubjects" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="TeacherHasSubjects">
           <Key>
@@ -465,8 +555,8 @@
           <Property Name="IdTeacher" Type="Int32" />
           <Property Name="IdSubject" Type="Int32" />
           <Property Name="Duration" Type="Int32" />
-          <NavigationProperty Name="Subjects" Relationship="Self.FK_TeacherHasSubjects_Subjects" FromRole="TeacherHasSubjects" ToRole="Subjects" />
-          <NavigationProperty Name="Teachers" Relationship="Self.FK_TeacherHasSubjects_Teachers" FromRole="TeacherHasSubjects" ToRole="Teachers" />
+          <NavigationProperty Name="Subjects" Relationship="excelModel.FK_TeacherHasSubjects_Subjects" FromRole="TeacherHasSubjects" ToRole="Subjects" />
+          <NavigationProperty Name="Teachers" Relationship="excelModel.FK_TeacherHasSubjects_Teachers" FromRole="TeacherHasSubjects" ToRole="Teachers" />
         </EntityType>
         <EntityType Name="Teachers">
           <Key>
@@ -474,8 +564,8 @@
           </Key>
           <Property Name="idTeacher" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TeacherName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="History" Relationship="Self.FK_History_Teachers" FromRole="Teachers" ToRole="History" />
-          <NavigationProperty Name="TeacherHasSubjects" Relationship="Self.FK_TeacherHasSubjects_Teachers" FromRole="Teachers" ToRole="TeacherHasSubjects" />
+          <NavigationProperty Name="History" Relationship="excelModel.FK_History_Teachers" FromRole="Teachers" ToRole="History" />
+          <NavigationProperty Name="TeacherHasSubjects" Relationship="excelModel.FK_TeacherHasSubjects_Teachers" FromRole="Teachers" ToRole="TeacherHasSubjects" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -485,7 +575,7 @@
           <Property Name="Login" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="IdRole" Type="Int32" />
-          <NavigationProperty Name="Role" Relationship="Self.FK_Users_Role" FromRole="Users" ToRole="Role" />
+          <NavigationProperty Name="Role" Relationship="excelModel.FK_Users_Role" FromRole="Users" ToRole="Role" />
         </EntityType>
         <EntityType Name="YearAdd">
           <Key>
@@ -493,13 +583,13 @@
           </Key>
           <Property Name="idYear" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Year" Type="Int32" />
-          <NavigationProperty Name="Students" Relationship="Self.FK_Students_YearAdd" FromRole="YearAdd" ToRole="Students" />
+          <NavigationProperty Name="Students" Relationship="excelModel.FK_Students_YearAdd" FromRole="YearAdd" ToRole="Students" />
         </EntityType>
         <Association Name="FK_Students_FormTime">
-          <End Role="FormTime" Type="Self.FormTime" Multiplicity="0..1">
+          <End Type="excelModel.FormTime" Role="FormTime" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="Students" Type="Self.Students" Multiplicity="*" />
+          <End Type="excelModel.Students" Role="Students" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="FormTime">
               <PropertyRef Name="Id" />
@@ -510,8 +600,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Journal_Groups">
-          <End Role="Groups" Type="Self.Groups" Multiplicity="0..1" />
-          <End Role="Journals" Type="Self.Journals" Multiplicity="*" />
+          <End Type="excelModel.Groups" Role="Groups" Multiplicity="0..1" />
+          <End Type="excelModel.Journals" Role="Journals" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Groups">
               <PropertyRef Name="IdGroup" />
@@ -522,10 +612,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Students_Groups">
-          <End Role="Groups" Type="Self.Groups" Multiplicity="0..1">
+          <End Type="excelModel.Groups" Role="Groups" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="Students" Type="Self.Students" Multiplicity="*" />
+          <End Type="excelModel.Students" Role="Students" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Groups">
               <PropertyRef Name="IdGroup" />
@@ -536,10 +626,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_History_Status">
-          <End Role="Status" Type="Self.Status" Multiplicity="0..1">
+          <End Type="excelModel.Status" Role="Status" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="History" Type="Self.History" Multiplicity="*" />
+          <End Type="excelModel.History" Role="History" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Status">
               <PropertyRef Name="IdStatus" />
@@ -550,10 +640,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_History_Students">
-          <End Role="Students" Type="Self.Students" Multiplicity="0..1">
+          <End Type="excelModel.Students" Role="Students" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="History" Type="Self.History" Multiplicity="*" />
+          <End Type="excelModel.History" Role="History" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Students">
               <PropertyRef Name="IdStudent" />
@@ -564,10 +654,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_History_Teachers">
-          <End Role="Teachers" Type="Self.Teachers" Multiplicity="0..1">
+          <End Type="excelModel.Teachers" Role="Teachers" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="History" Type="Self.History" Multiplicity="*" />
+          <End Type="excelModel.History" Role="History" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Teachers">
               <PropertyRef Name="idTeacher" />
@@ -578,8 +668,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Journal_Students">
-          <End Role="Students" Type="Self.Students" Multiplicity="1" />
-          <End Role="Journals" Type="Self.Journals" Multiplicity="*" />
+          <End Type="excelModel.Students" Role="Students" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="excelModel.Journals" Role="Journals" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Students">
               <PropertyRef Name="IdStudent" />
@@ -590,10 +682,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Journal_Subjects">
-          <End Role="Subjects" Type="Self.Subjects" Multiplicity="0..1">
+          <End Type="excelModel.Subjects" Role="Subjects" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="Journals" Type="Self.Journals" Multiplicity="*" />
+          <End Type="excelModel.Journals" Role="Journals" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Subjects">
               <PropertyRef Name="IdSubject" />
@@ -604,10 +696,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Students_Professions">
-          <End Role="Professions" Type="Self.Professions" Multiplicity="0..1">
+          <End Type="excelModel.Professions" Role="Professions" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="Students" Type="Self.Students" Multiplicity="*" />
+          <End Type="excelModel.Students" Role="Students" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Professions">
               <PropertyRef Name="IdProfession" />
@@ -618,10 +710,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Users_Role">
-          <End Role="Role" Type="Self.Role" Multiplicity="0..1">
+          <End Type="excelModel.Role" Role="Role" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <End Type="excelModel.Users" Role="Users" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Role">
               <PropertyRef Name="IdRole" />
@@ -632,10 +724,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Students_YearAdd">
-          <End Role="YearAdd" Type="Self.YearAdd" Multiplicity="0..1">
+          <End Type="excelModel.YearAdd" Role="YearAdd" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="Students" Type="Self.Students" Multiplicity="*" />
+          <End Type="excelModel.Students" Role="Students" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="YearAdd">
               <PropertyRef Name="idYear" />
@@ -646,10 +738,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_TeacherHasSubjects_Subjects">
-          <End Role="Subjects" Type="Self.Subjects" Multiplicity="0..1">
+          <End Type="excelModel.Subjects" Role="Subjects" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="TeacherHasSubjects" Type="Self.TeacherHasSubjects" Multiplicity="*" />
+          <End Type="excelModel.TeacherHasSubjects" Role="TeacherHasSubjects" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Subjects">
               <PropertyRef Name="IdSubject" />
@@ -660,10 +752,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_TeacherHasSubjects_Teachers">
-          <End Role="Teachers" Type="Self.Teachers" Multiplicity="0..1">
+          <End Type="excelModel.Teachers" Role="Teachers" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="TeacherHasSubjects" Type="Self.TeacherHasSubjects" Multiplicity="*" />
+          <End Type="excelModel.TeacherHasSubjects" Role="TeacherHasSubjects" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Teachers">
               <PropertyRef Name="idTeacher" />
@@ -673,73 +765,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="excelEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="FormTime" EntityType="Self.FormTime" />
-          <EntitySet Name="Groups" EntityType="Self.Groups" />
-          <EntitySet Name="History" EntityType="Self.History" />
-          <EntitySet Name="Journals" EntityType="Self.Journals" />
-          <EntitySet Name="Professions" EntityType="Self.Professions" />
-          <EntitySet Name="Role" EntityType="Self.Role" />
-          <EntitySet Name="Status" EntityType="Self.Status" />
-          <EntitySet Name="Students" EntityType="Self.Students" />
-          <EntitySet Name="Subjects" EntityType="Self.Subjects" />
-          <EntitySet Name="TeacherHasSubjects" EntityType="Self.TeacherHasSubjects" />
-          <EntitySet Name="Teachers" EntityType="Self.Teachers" />
-          <EntitySet Name="Users" EntityType="Self.Users" />
-          <EntitySet Name="YearAdd" EntityType="Self.YearAdd" />
-          <AssociationSet Name="FK_Students_FormTime" Association="Self.FK_Students_FormTime">
-            <End Role="FormTime" EntitySet="FormTime" />
-            <End Role="Students" EntitySet="Students" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Journal_Groups" Association="Self.FK_Journal_Groups">
-            <End Role="Groups" EntitySet="Groups" />
-            <End Role="Journals" EntitySet="Journals" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Students_Groups" Association="Self.FK_Students_Groups">
-            <End Role="Groups" EntitySet="Groups" />
-            <End Role="Students" EntitySet="Students" />
-          </AssociationSet>
-          <AssociationSet Name="FK_History_Status" Association="Self.FK_History_Status">
-            <End Role="Status" EntitySet="Status" />
-            <End Role="History" EntitySet="History" />
-          </AssociationSet>
-          <AssociationSet Name="FK_History_Students" Association="Self.FK_History_Students">
-            <End Role="Students" EntitySet="Students" />
-            <End Role="History" EntitySet="History" />
-          </AssociationSet>
-          <AssociationSet Name="FK_History_Teachers" Association="Self.FK_History_Teachers">
-            <End Role="Teachers" EntitySet="Teachers" />
-            <End Role="History" EntitySet="History" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Journal_Students" Association="Self.FK_Journal_Students">
-            <End Role="Students" EntitySet="Students" />
-            <End Role="Journals" EntitySet="Journals" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Journal_Subjects" Association="Self.FK_Journal_Subjects">
-            <End Role="Subjects" EntitySet="Subjects" />
-            <End Role="Journals" EntitySet="Journals" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Students_Professions" Association="Self.FK_Students_Professions">
-            <End Role="Professions" EntitySet="Professions" />
-            <End Role="Students" EntitySet="Students" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Users_Role" Association="Self.FK_Users_Role">
-            <End Role="Role" EntitySet="Role" />
-            <End Role="Users" EntitySet="Users" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Students_YearAdd" Association="Self.FK_Students_YearAdd">
-            <End Role="YearAdd" EntitySet="YearAdd" />
-            <End Role="Students" EntitySet="Students" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TeacherHasSubjects_Subjects" Association="Self.FK_TeacherHasSubjects_Subjects">
-            <End Role="Subjects" EntitySet="Subjects" />
-            <End Role="TeacherHasSubjects" EntitySet="TeacherHasSubjects" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TeacherHasSubjects_Teachers" Association="Self.FK_TeacherHasSubjects_Teachers">
-            <End Role="Teachers" EntitySet="Teachers" />
-            <End Role="TeacherHasSubjects" EntitySet="TeacherHasSubjects" />
-          </AssociationSet>
-        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -749,120 +774,131 @@
           <EntitySetMapping Name="FormTime">
             <EntityTypeMapping TypeName="excelModel.FormTime">
               <MappingFragment StoreEntitySet="FormTime">
-                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Groups">
             <EntityTypeMapping TypeName="excelModel.Groups">
               <MappingFragment StoreEntitySet="Groups">
-                <ScalarProperty Name="IdGroup" ColumnName="IdGroup" />
                 <ScalarProperty Name="NameGroup" ColumnName="NameGroup" />
+                <ScalarProperty Name="IdGroup" ColumnName="IdGroup" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="History">
             <EntityTypeMapping TypeName="excelModel.History">
               <MappingFragment StoreEntitySet="History">
-                <ScalarProperty Name="IdHistory" ColumnName="IdHistory" />
-                <ScalarProperty Name="IdTeacher" ColumnName="IdTeacher" />
-                <ScalarProperty Name="IdStudent" ColumnName="IdStudent" />
-                <ScalarProperty Name="IdStatus" ColumnName="IdStatus" />
                 <ScalarProperty Name="DateEvent" ColumnName="DateEvent" />
+                <ScalarProperty Name="IdStatus" ColumnName="IdStatus" />
+                <ScalarProperty Name="IdStudent" ColumnName="IdStudent" />
+                <ScalarProperty Name="IdTeacher" ColumnName="IdTeacher" />
+                <ScalarProperty Name="IdHistory" ColumnName="IdHistory" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Journals">
             <EntityTypeMapping TypeName="excelModel.Journals">
               <MappingFragment StoreEntitySet="Journals">
-                <ScalarProperty Name="IdJournal" ColumnName="IdJournal" />
-                <ScalarProperty Name="IdStudent" ColumnName="IdStudent" />
-                <ScalarProperty Name="IdSubject" ColumnName="IdSubject" />
-                <ScalarProperty Name="Evaluation" ColumnName="Evaluation" />
                 <ScalarProperty Name="IdGroup" ColumnName="IdGroup" />
+                <ScalarProperty Name="Evaluation" ColumnName="Evaluation" />
+                <ScalarProperty Name="IdSubject" ColumnName="IdSubject" />
+                <ScalarProperty Name="IdStudent" ColumnName="IdStudent" />
+                <ScalarProperty Name="IdJournal" ColumnName="IdJournal" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Professions">
             <EntityTypeMapping TypeName="excelModel.Professions">
               <MappingFragment StoreEntitySet="Professions">
-                <ScalarProperty Name="IdProfession" ColumnName="IdProfession" />
                 <ScalarProperty Name="NameProfession" ColumnName="NameProfession" />
+                <ScalarProperty Name="IdProfession" ColumnName="IdProfession" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Role">
             <EntityTypeMapping TypeName="excelModel.Role">
               <MappingFragment StoreEntitySet="Role">
-                <ScalarProperty Name="IdRole" ColumnName="IdRole" />
                 <ScalarProperty Name="NameRole" ColumnName="NameRole" />
+                <ScalarProperty Name="IdRole" ColumnName="IdRole" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Status">
             <EntityTypeMapping TypeName="excelModel.Status">
               <MappingFragment StoreEntitySet="Status">
-                <ScalarProperty Name="IdStatus" ColumnName="IdStatus" />
                 <ScalarProperty Name="NameStatus" ColumnName="NameStatus" />
+                <ScalarProperty Name="IdStatus" ColumnName="IdStatus" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Students">
             <EntityTypeMapping TypeName="excelModel.Students">
               <MappingFragment StoreEntitySet="Students">
-                <ScalarProperty Name="IdStudent" ColumnName="IdStudent" />
-                <ScalarProperty Name="FiestName" ColumnName="FiestName" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="PatronomicName" ColumnName="PatronomicName" />
-                <ScalarProperty Name="IdProfession" ColumnName="IdProfession" />
-                <ScalarProperty Name="IdFormTime" ColumnName="IdFormTime" />
-                <ScalarProperty Name="IdGroup" ColumnName="IdGroup" />
                 <ScalarProperty Name="IdYearAdd" ColumnName="IdYearAdd" />
+                <ScalarProperty Name="IdGroup" ColumnName="IdGroup" />
+                <ScalarProperty Name="IdFormTime" ColumnName="IdFormTime" />
+                <ScalarProperty Name="IdProfession" ColumnName="IdProfession" />
+                <ScalarProperty Name="PatronomicName" ColumnName="PatronomicName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FiestName" ColumnName="FiestName" />
+                <ScalarProperty Name="IdStudent" ColumnName="IdStudent" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Subjects">
             <EntityTypeMapping TypeName="excelModel.Subjects">
               <MappingFragment StoreEntitySet="Subjects">
-                <ScalarProperty Name="IdSubject" ColumnName="IdSubject" />
                 <ScalarProperty Name="NameSubject" ColumnName="NameSubject" />
+                <ScalarProperty Name="IdSubject" ColumnName="IdSubject" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="excelModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TeacherHasSubjects">
             <EntityTypeMapping TypeName="excelModel.TeacherHasSubjects">
               <MappingFragment StoreEntitySet="TeacherHasSubjects">
-                <ScalarProperty Name="idTD" ColumnName="idTD" />
-                <ScalarProperty Name="IdTeacher" ColumnName="IdTeacher" />
-                <ScalarProperty Name="IdSubject" ColumnName="IdSubject" />
                 <ScalarProperty Name="Duration" ColumnName="Duration" />
+                <ScalarProperty Name="IdSubject" ColumnName="IdSubject" />
+                <ScalarProperty Name="IdTeacher" ColumnName="IdTeacher" />
+                <ScalarProperty Name="idTD" ColumnName="idTD" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Teachers">
             <EntityTypeMapping TypeName="excelModel.Teachers">
               <MappingFragment StoreEntitySet="Teachers">
-                <ScalarProperty Name="idTeacher" ColumnName="idTeacher" />
                 <ScalarProperty Name="TeacherName" ColumnName="TeacherName" />
+                <ScalarProperty Name="idTeacher" ColumnName="idTeacher" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="excelModel.Users">
               <MappingFragment StoreEntitySet="Users">
-                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
-                <ScalarProperty Name="Login" ColumnName="Login" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="IdRole" ColumnName="IdRole" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="YearAdd">
             <EntityTypeMapping TypeName="excelModel.YearAdd">
               <MappingFragment StoreEntitySet="YearAdd">
-                <ScalarProperty Name="idYear" ColumnName="idYear" />
                 <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="idYear" ColumnName="idYear" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

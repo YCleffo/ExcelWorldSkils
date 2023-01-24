@@ -94,7 +94,7 @@ namespace ExcelWorldSkils.Model.Frame
                 }
                 else
                 {
-                    if (UsersViewModel.AddUser(LogInTextBox.Text, PasswordTextBox.Text)==false)
+                    if (UsersViewModel.AddUser(LogInTextBox.Text, PasswordTextBox.Text) == false)
                     {
 
                     }
@@ -106,12 +106,7 @@ namespace ExcelWorldSkils.Model.Frame
                   MessageBoxImage.Information);
                         this.NavigationService.Navigate(new HomeNavigatePage());
                     }
-                  
-                    
-
-                  
                 }
-                
             }
             catch
             {

@@ -1,5 +1,6 @@
 ﻿using ExcelWorldSkils.Model;
 using ExcelWorldSkils.View.Model;
+using ExcelWorldSkils.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -72,6 +73,11 @@ namespace ExcelWorldSkils.View.Pages
 
                     db.context.Students.Add(newStudent);
                     db.context.SaveChanges();
+
+                    //if (StudentViewModel.AddStudent(FiestNameTextBox.Text, LastNameTextBox.Text, PatronomicTextBox.Text, GroupComboBox.SelectedValue, FormTimeComboBox.SelectedValue, YearAddComboBox.SelectedValue, ProfessionComboBox.SelectedValue) == false)
+                    //{
+
+                    //}
 
                     MessageBox.Show("Добавление выполнено успешно !",
                     "Уведомление",
