@@ -162,5 +162,19 @@ namespace ExcelWorldSkils.View.Pages
             //wordDock.SaveAs2($"{Directory.GetCurrentDirectory()}\\docs\\Test.docx");
             //wordDock.SaveAs2($"{Directory.GetCurrentDirectory()}\\docs\\Test.pdf", Word.WdExportFormat.wdExportFormatPDF);
         }
+
+        private void ProfilButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Button selectedButton = (Button)sender;
+                Students item = selectedButton.DataContext as Students;
+                this.NavigationService.Navigate(new LournalPage(item));
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Данные не удалены. ");
+            }
+        }
     }
 }

@@ -26,6 +26,13 @@
                 <DataGridTextColumn Header="Специальность" Binding="{Binding Professions.NameProfession}"/>
                 <DataGridTextColumn Header="Форма обучения" Binding="{Binding FormTime.Name}"/>
                 <DataGridTextColumn Header="Год поступления" Binding="{Binding YearAdd.Year}"/>
+                <DataGridTemplateColumn Header="Профили">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Профиль" x:Name="ProfilButton" Click="ProfilButton_Click"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

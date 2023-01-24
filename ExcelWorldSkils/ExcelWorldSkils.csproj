@@ -138,6 +138,9 @@
     <Compile Include="View\Pages\ListStudentPage.xaml.cs">
       <DependentUpon>ListStudentPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Pages\LournalPage.xaml.cs">
+      <DependentUpon>LournalPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Pages\RemoveStudentPage.xaml.cs">
       <DependentUpon>RemoveStudentPage.xaml</DependentUpon>
     </Compile>
@@ -170,6 +173,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Pages\ListStudentPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\LournalPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
