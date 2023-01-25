@@ -54,17 +54,18 @@ namespace ExcelWorldSkils.Model.Frame
                 else
 
                 {
-
+                    App.CurrentUser = autch;
+                   
                     switch (autch.IdRole)
                     {
 
                         case 1:
-                            this.NavigationService.Navigate(new HomeNavigatePage());
+                            this.NavigationService.Navigate(new StudentPage());
 
                             break;
                         case 2:
                             this.NavigationService.Navigate(new HomeNavigatePage());
-
+                          
                             break;
 
                     }

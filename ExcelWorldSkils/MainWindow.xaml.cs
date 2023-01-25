@@ -1,5 +1,6 @@
 ﻿
 using ExcelWorldSkils.Model.Frame;
+using ExcelWorldSkils.View.Model;
 using ExcelWorldSkils.View.Pages;
 using System;
 using System.Collections.Generic;
@@ -23,6 +24,7 @@ namespace ExcelWorldSkils
     /// </summary>
     public partial class MainWindow : Window
     {
+        Core db = new Core();
         public MainWindow()
         {
             InitializeComponent();
@@ -35,6 +37,15 @@ namespace ExcelWorldSkils
             {
                 MainFrame.GoBack();
             }
+        }
+
+        private void MainFrame_Navigated(object sender, NavigationEventArgs e)
+        {
+            if (App.CurrentUser!=null && App.CurrentUser.IdRole!=1)
+            {
+                UserTextBlock.Text = db.context.Teachers.FirstOrDefault(x => x.UserId == App.CurrentUser.IdUser).TeacherName;
+            }
+           
         }
     }
 }

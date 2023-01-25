@@ -23,10 +23,12 @@ namespace ExcelWorldSkils.Model
     
         public int idTeacher { get; set; }
         public string TeacherName { get; set; }
+        public int UserId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<History> History { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TeacherHasSubjects> TeacherHasSubjects { get; set; }
+        public virtual Users Users { get; set; }
     }
 }

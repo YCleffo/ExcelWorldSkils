@@ -105,6 +105,7 @@
           </Key>
           <Property Name="idTeacher" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TeacherName" Type="nvarchar" MaxLength="100" />
+          <Property Name="UserId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -288,6 +289,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Teachers_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Teachers" Type="Self.Teachers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="Teachers">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Users_Role">
           <End Role="Role" Type="Self.Role" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
@@ -365,6 +378,10 @@
             <End Role="Teachers" EntitySet="Teachers" />
             <End Role="TeacherHasSubjects" EntitySet="TeacherHasSubjects" />
           </AssociationSet>
+          <AssociationSet Name="FK_Teachers_Users" Association="Self.FK_Teachers_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Teachers" EntitySet="Teachers" />
+          </AssociationSet>
           <AssociationSet Name="FK_Users_Role" Association="Self.FK_Users_Role">
             <End Role="Role" EntitySet="Role" />
             <End Role="Users" EntitySet="Users" />
@@ -440,6 +457,10 @@
           <AssociationSet Name="FK_TeacherHasSubjects_Teachers" Association="excelModel.FK_TeacherHasSubjects_Teachers">
             <End Role="Teachers" EntitySet="Teachers" />
             <End Role="TeacherHasSubjects" EntitySet="TeacherHasSubjects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Teachers_Users" Association="excelModel.FK_Teachers_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Teachers" EntitySet="Teachers" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="FormTime">
@@ -564,8 +585,10 @@
           </Key>
           <Property Name="idTeacher" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TeacherName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="History" Relationship="excelModel.FK_History_Teachers" FromRole="Teachers" ToRole="History" />
           <NavigationProperty Name="TeacherHasSubjects" Relationship="excelModel.FK_TeacherHasSubjects_Teachers" FromRole="Teachers" ToRole="TeacherHasSubjects" />
+          <NavigationProperty Name="Users" Relationship="excelModel.FK_Teachers_Users" FromRole="Teachers" ToRole="Users" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -576,6 +599,7 @@
           <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="IdRole" Type="Int32" />
           <NavigationProperty Name="Role" Relationship="excelModel.FK_Users_Role" FromRole="Users" ToRole="Role" />
+          <NavigationProperty Name="Teachers" Relationship="excelModel.FK_Teachers_Users" FromRole="Users" ToRole="Teachers" />
         </EntityType>
         <EntityType Name="YearAdd">
           <Key>
@@ -765,7 +789,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        <Association Name="FK_Teachers_Users">
+          <End Type="excelModel.Users" Role="Users" Multiplicity="1" />
+          <End Type="excelModel.Teachers" Role="Teachers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="Teachers">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -879,6 +915,7 @@
           <EntitySetMapping Name="Teachers">
             <EntityTypeMapping TypeName="excelModel.Teachers">
               <MappingFragment StoreEntitySet="Teachers">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="TeacherName" ColumnName="TeacherName" />
                 <ScalarProperty Name="idTeacher" ColumnName="idTeacher" />
               </MappingFragment>
