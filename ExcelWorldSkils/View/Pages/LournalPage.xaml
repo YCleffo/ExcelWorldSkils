@@ -14,15 +14,16 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Vertical">
-            <TextBlock Text="{Binding FIO}"/>
-            <TextBlock Text="{Binding Groups.NameGroup}"/>
-            <TextBlock Text="{Binding Professions.NameProfession}"/>
+            <TextBlock Text="{Binding FIO}" x:Name="StudentTextBlock"/>
+            <TextBlock Text="{Binding Groups.NameGroup}" x:Name="GroupTextBlock"/>
+            <TextBlock Text="{Binding Professions.NameProfession}" x:Name="ProfessionTextBlock"/>
+            <Button x:Name="ReportButton" Content="Диплом" Padding="10 4" Margin="0 6" Click="ReportButton_Click"/>
         </StackPanel>
         <DataGrid Grid.Row="1" x:Name="ListDataGrid" Margin="0 20" AutoGenerateColumns="False" ColumnWidth="*">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Предмет" Binding="{Binding Subjects.NameSubject}"/>
                 <DataGridTextColumn Header="Оценка" Binding="{Binding Evaluation}"/>
-                <DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Редактировать">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button Content="Редактировать" x:Name="EditProfilButton" Click="EditProfilButton_Click"/>
@@ -31,7 +32,7 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Grid Grid.Row="1" x:Name="EditRatingGrid" Background="DarkSlateGray" Opacity=".94">
+        <Grid Grid.Row="1" x:Name="EditRatingGrid" Visibility="Collapsed" Background="DarkSlateGray"  Opacity=".94" >
             <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center"  Width="200">
                 <TextBox x:Name="EditRatingTextBox" Margin="0 10"/>
                 <Button x:Name="EditRatingButton" Content="Изменить оценку" Padding="6" Click="EditRatingButton_Click"/>
