@@ -22,7 +22,21 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Предмет" Binding="{Binding Subjects.NameSubject}"/>
                 <DataGridTextColumn Header="Оценка" Binding="{Binding Evaluation}"/>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Редактировать" x:Name="EditProfilButton" Click="EditProfilButton_Click"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
+        <Grid Grid.Row="1" x:Name="EditRatingGrid" Background="DarkSlateGray" Opacity=".94">
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center"  Width="200">
+                <TextBox x:Name="EditRatingTextBox" Margin="0 10"/>
+                <Button x:Name="EditRatingButton" Content="Изменить оценку" Padding="6" Click="EditRatingButton_Click"/>
+                <Button x:Name="CloseEditRatingButton" Click="CloseEditRatingButton_Click" Content="Закрыть" Margin="40"/>
+            </StackPanel>
+        </Grid>
     </Grid>
 </Page>

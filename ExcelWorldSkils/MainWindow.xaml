@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:ExcelWorldSkils"
         mc:Ignorable="d"
         Title="Журнал учителя" Icon="Assets/Img/wsr-300.png" Height="600" Width="1200">
-    <Grid>
+    <Grid Background="DarkSlateGray">
         <Grid.RowDefinitions>
             <RowDefinition Height="100"/>
             <RowDefinition/>

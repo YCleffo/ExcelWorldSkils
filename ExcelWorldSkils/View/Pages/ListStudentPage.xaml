@@ -7,7 +7,6 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Список студентов группы">
-
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -15,7 +14,7 @@
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal">
             <TextBlock VerticalAlignment="Center" Text="Выберите группу"/>
-            <ComboBox Margin="20 0 0 0" x:Name="ComboBoxSort" SelectionChanged="ComboBoxSortSelectionChanged" ></ComboBox>
+            <ComboBox Margin="20 0 0 0" x:Name="ComboBoxSort"  SelectionChanged="ComboBoxSortSelectionChanged" MinWidth="90"></ComboBox>
             <Button x:Name="ConclusionBtn" Click="ConclusionBtnClick" Content="Вывод отчета Excel" Margin="10 0 10 0" Padding="8 4"/>
             <Button x:Name="ConclBtnWord" Click="ConclBtnWordClick" Content="Вывод отчета Word" Padding="8 4"/>
         </StackPanel>

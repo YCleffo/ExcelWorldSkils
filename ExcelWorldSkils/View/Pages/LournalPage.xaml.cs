@@ -34,9 +34,47 @@ namespace ExcelWorldSkils.View.Pages
             this.DataContext = activeStudent;
         }
 
-        private void ConclBtnWordClick(object sender, RoutedEventArgs e)
+        private void EditRatingButton_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
 
+                var item = ListDataGrid.SelectedItem as Journals;
+
+                //проверка того, что пользователь выбрал строки для удаления
+
+                if (item == null)
+
+                {
+
+                    MessageBox.Show("Вы не выбрали ни одной строки");
+
+                    return;
+
+                }
+
+                else
+                {
+                    
+                    item.Evaluation = 5;
+                    db.context.SaveChanges();
+                }
+            }
+            catch (Exception)
+
+            {
+                MessageBox.Show("Данные не отредактированы. ");
+            }
+        }
+
+        private void EditProfilButton_Click(object sender, RoutedEventArgs e)
+        {
+            EditRatingGrid.Visibility = Visibility.Visible;
+        }
+
+        private void CloseEditRatingButton_Click(object sender, RoutedEventArgs e)
+        {
+            EditRatingGrid.Visibility = Visibility.Collapsed;
         }
     }
 }
