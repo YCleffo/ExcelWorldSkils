@@ -98,6 +98,7 @@ namespace ExcelWorldSkils.View.Pages
                 doc.Activate();
                 doc.Bookmarks["FIO"].Range.Text = StudentTextBlock.Text;
                 doc.Bookmarks["Profession"].Range.Text = ProfessionTextBlock.Text;
+                //doc.Bookmarks["Teacher"].Range.Text = UserTextBlock.Text;
                 application.Visible = true;
                 doc.SaveAs($"{Directory.GetCurrentDirectory()}\\Docs\\{StudentTextBlock.Text.Split()[0]}_Диплом.doc");
             }
