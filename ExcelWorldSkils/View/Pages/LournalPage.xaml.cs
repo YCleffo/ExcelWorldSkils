@@ -42,24 +42,15 @@ namespace ExcelWorldSkils.View.Pages
         {
             try
             {
-
                 var item = ListDataGrid.SelectedItem as Journals;
-
                 //проверка того, что пользователь выбрал строки для удаления
-
                 if (item == null)
-
                 {
-
-                    MessageBox.Show("Вы не выбрали ни одной строки");
-
+                    MessageBox.Show("Вы не выбрали ни одной строки!");
                     return;
-
                 }
-
                 else
                 {
-                    
                     item.Evaluation = Convert.ToInt32(EditRatingTextBox.Text);
                     db.context.SaveChanges();
                     ListDataGrid.ItemsSource = db.context.Journals.Where(x => x.IdStudent == currentStudent.IdStudent).ToList(); ;
@@ -67,9 +58,8 @@ namespace ExcelWorldSkils.View.Pages
                 }
             }
             catch (Exception)
-
             {
-                MessageBox.Show("Данные не отредактированы. ");
+                MessageBox.Show("Данные не отредактированы!");
             }
         }
 
@@ -98,7 +88,7 @@ namespace ExcelWorldSkils.View.Pages
                 doc.Activate();
                 doc.Bookmarks["FIO"].Range.Text = StudentTextBlock.Text;
                 doc.Bookmarks["Profession"].Range.Text = ProfessionTextBlock.Text;
-                //doc.Bookmarks["Teacher"].Range.Text = UserTextBlock.Text;
+                doc.Bookmarks["Teacher"].Range.Text = App.CurrentUser.IdUser.ToString();
                 application.Visible = true;
                 doc.SaveAs($"{Directory.GetCurrentDirectory()}\\Docs\\{StudentTextBlock.Text.Split()[0]}_Диплом.doc");
             }
